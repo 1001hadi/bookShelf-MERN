@@ -9,14 +9,14 @@ const app = express();
 // Middleware
 app.use(express.json());
 // handdle cors middleware
-// app.use(cors())
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type"],
-  })
-);
+app.use(cors());
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000",
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     allowedHeaders: ["Content-Type"],
+//   })
+// );
 
 app.get("/", (req, res) => {
   console.log(req);
