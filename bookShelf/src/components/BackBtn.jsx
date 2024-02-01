@@ -6,7 +6,7 @@ function BackBtn({ destination = "/" }) {
     <div className="flex">
       <Link
         to={destination}
-        className="bg-teal-800 text-white px-4 py-1 rounded-lg w-fit"
+        className="bg-[#219ebc] text-white px-4 py-1 rounded-lg w-fit"
       >
         <BsArrowLeft className="text-2xl" />
       </Link>

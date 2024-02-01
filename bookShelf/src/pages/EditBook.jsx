@@ -3,6 +3,7 @@ import BackBtn from "../components/BackBtn";
 import LoadingSpinner from "../components/LoadingSpinner";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 function EditBook() {
   const [title, setTitle] = useState("");
@@ -11,6 +12,7 @@ function EditBook() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     setLoading(true);
@@ -24,8 +26,8 @@ function EditBook() {
       })
       .catch((err) => {
         setLoading(false);
-        alert("An error happened. Please Chack the console");
-        // enqueueSnackbar('Error', { variant: 'error' });
+        alert("An error happened.");
+        enqueueSnackbar("Err", { variant: "err" });
         console.log(err);
       });
   }, []);
@@ -41,13 +43,13 @@ function EditBook() {
       .put(`http://localhost:8888/books/${id}`, data)
       .then(() => {
         setLoading(false);
-        // enqueueSnackbar('Book Created successfully', { variant: 'success' });
+        enqueueSnackbar("Book Updated Successfully", { variant: "success" });
         navigate("/");
       })
       .catch((err) => {
         setLoading(false);
         alert("An error happened. Please Chack the console");
-        // enqueueSnackbar('Error', { variant: 'error' });
+        enqueueSnackbar("Err", { variant: "err" });
         console.log(err);
       });
   };
@@ -55,9 +57,9 @@ function EditBook() {
   return (
     <div className="p-4">
       <BackBtn />
-      <h1 className="text-3xl my-4">Edite Book</h1>
+      <h1 className="text-[#fb8500] text-3xl my-8">Edite Book</h1>
       {loading ? <LoadingSpinner /> : ""}
-      <div className="flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto">
+      <div className="flex flex-col border-2 border-[#219ebc] rounded-xl w-[600px] p-4 mx-auto">
         <div className="my-4">
           <label className="text-xl mr-4 text-gray-500">Title</label>
           <input
@@ -85,7 +87,10 @@ function EditBook() {
             className="border-2 border-gray-500 px-4 py-2  w-full "
           />
         </div>
-        <button className="p-2 bg-sky-300 m-8" onClick={handleBookEdit}>
+        <button
+          className="p-2 bg-[#219ebc] rounded m-8"
+          onClick={handleBookEdit}
+        >
           Save
         </button>
       </div>
